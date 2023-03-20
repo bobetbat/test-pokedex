@@ -12,7 +12,7 @@ export const routes = [
 		errorElement: <NotFound />,
 	},
 	{
-		path: "/details/:id",
+		path: "/pokemon/:id",
 		element: <PokemonDetails />,
 		errorElement: <NotFound />,
 	}

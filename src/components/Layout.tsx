@@ -13,7 +13,7 @@ export const Layout: React.FC<Props> = ({ children, footer, header }) => {
 	return (
 		<>
 			{header && <Header />}
-			<Stack sx={{ minHeight: "100vh", mt: "12vh" }}>
+			<Stack sx={{ minHeight: "100vh", mt: "12vh", mb:"3rem", alignItems:"center" }}>
 				{children}
 			</Stack>
 			{footer && <Footer />}

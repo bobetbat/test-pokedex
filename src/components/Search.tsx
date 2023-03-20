@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
+import { createSearchParams, useNavigate } from "react-router-dom";
 
 const SearchContainer = styled("div")(({ theme }) => ({
 	display: "flex",
@@ -35,6 +36,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const Search: React.FC = () => {
+	const navigate = useNavigate();
+
 	return (
 		<Box sx={{ display: "flex", justifyContent: "center" }}>
 			<SearchContainer>
@@ -44,6 +47,12 @@ export const Search: React.FC = () => {
 				<StyledInputBase
 					placeholder="Search…"
 					inputProps={{ "aria-label": "search" }}
+					onChange={(e) => {
+						navigate({
+							pathname: "/",
+							search: `?${createSearchParams({ name: e.currentTarget.value })}`
+						});
+					}}
 				/>
 				<IconWrapper>
 					<CloseIcon />
