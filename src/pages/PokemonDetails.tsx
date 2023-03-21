@@ -1,16 +1,18 @@
 import React, { useMemo } from "react";
-import { Card, CardMedia, Container, List, ListItem, Stack, Tab, Typography } from "@mui/material";
+import { Breadcrumbs, Card, CardMedia, Container, Link, List, ListItem, Stack, Tab, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { PokemonSpecies } from "../api";
 import { Layout } from "../components/Layout";
 import logo from "./../logo.svg";
 import { formatString } from "../utils";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 export const PokemonDetails: React.FC = () => {
+	const navigate = useNavigate();
 	const { id } = useParams();
 	const [value, setValue] = React.useState("1");
 	const pokemons = useSelector((state: RootState) => state.pokemon.pokemons);
@@ -27,6 +29,11 @@ export const PokemonDetails: React.FC = () => {
 	return (
 		<Layout header footer>
 			<Container sx={{ width: "100%", typography: "body1", px: "12%" }}>
+				<Breadcrumbs aria-label="breadcrumb">
+					<Link fontWeight={600} underline="hover" color="inherit" onClick={() => navigate(-1)}>
+						<ArrowBackIosIcon fontSize='small' sx={{ pt: 1 }} />	Back to search
+					</Link>
+				</Breadcrumbs>
 				<TabContext value={value}>
 					<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
 						<TabList onChange={handleChange}>
@@ -36,7 +43,7 @@ export const PokemonDetails: React.FC = () => {
 					</Box>
 					<Card sx={{ p: 4 }}>
 						<TabPanel value="1" sx={{ display: "flex", flexDirection: "row", p: 0 }}>
-							<Card>
+							<Card sx={{ mr: 1 }}>
 								<Typography fontWeight={600} color='primary.main' variant='h5'>{formatString(pokemonDetails?.name)}</Typography>
 								<CardMedia
 									sx={{ height: 340, width: 240 }}
@@ -84,7 +91,7 @@ export const PokemonDetails: React.FC = () => {
 							</List>
 						</TabPanel>
 						<TabPanel value="2" sx={{ display: "flex", flexDirection: "row", p: 0 }}>
-							<Card>
+							<Card sx={{ mr: 1 }}>
 								<Typography fontWeight={600} color='primary.main' variant='h5'>{formatString(pokemonDetails?.name)}</Typography>
 								<CardMedia
 									sx={{ height: 340, width: 240 }}
@@ -97,9 +104,7 @@ export const PokemonDetails: React.FC = () => {
 									<Typography fontWeight={600} variant='body1'>
 										{formatString(stat.pokemon_v2_stat?.name)}
 									</Typography>
-									<Box
-										sx={{ borderRadius: ".25rem", width: "60%", bgcolor: "secondary.main" }}
-									>
+									<Box sx={{ borderRadius: ".25rem", width: "60%", bgcolor: "secondary.main" }}>
 										<Stack alignItems='start' justifyContent='center' sx={{ width: `${stat.base_stat}%`, height: "2rem", bgcolor: "primary.main", borderRadius: ".25rem", pl: ".5rem" }}>
 											<Typography color='primary.contrastText' variant='body1'>
 												{stat.base_stat}

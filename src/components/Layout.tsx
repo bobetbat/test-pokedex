@@ -4,16 +4,16 @@ import { Footer } from "./Footer";
 import { Header } from "./Header";
 
 type Props = {
-  children: ReactNode;
-  footer?: boolean;
-  header?: boolean;
+	children: ReactNode;
+	footer?: boolean;
+	header?: boolean;
 };
 
 export const Layout: React.FC<Props> = ({ children, footer, header }) => {
 	return (
 		<>
 			{header && <Header />}
-			<Stack sx={{ minHeight: "100vh", mt: "12vh", mb:"3rem", alignItems:"center" }}>
+			<Stack sx={{ minHeight: "100vh", pt: "12vh", pb: "3rem", alignItems: "center", bgcolor: "#def2fe" }}>
 				{children}
 			</Stack>
 			{footer && <Footer />}

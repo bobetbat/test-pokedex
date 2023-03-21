@@ -15,7 +15,7 @@ export const DataProvider: React.FC<Props> = ({ children }) => {
 	const { data, loading } = useFetch(getItems);
 	useEffect(() => {
 		if (data === null) return;
-		console.log("save data to store");
+		// console.log("save data to store");
 		dispatch(addPokemons(data?.pokemon_v2_pokemon));
 	}, [data, dispatch]);
 

@@ -1,13 +1,14 @@
 import React, { useMemo } from "react";
 import { Grid, Pagination } from "@mui/material";
 import { Layout } from "../components/Layout";
-import { useSearchParams } from "react-router-dom";
+import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
 import { SearchCard } from "../components/SearchCard";
 import { Search } from "../components/Search";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 
 export const Home: React.FC = () => {
+	const navigate = useNavigate();
 	const pokemons = useSelector((state: RootState) => state.pokemon.pokemons);
 
 	const [searchParams] = useSearchParams();
@@ -39,8 +40,18 @@ export const Home: React.FC = () => {
 					</Grid>
 				))}
 			</Grid>
-			{/* FIX pagination getItemAriaLabel */}
-			<Pagination page={page} count={pokemons ? Math.ceil(pokemons.length/20) : 1} variant="outlined" shape="rounded" />
+			<Pagination
+				page={page}
+				count={pokemons ? Math.ceil(pokemons.length / 20) : 1}
+				variant="outlined"
+				shape="rounded"
+				onChange={(e, page) => {
+					navigate({
+						pathname: "/",
+						search: `?${createSearchParams({ page: String(page) })}`
+					});
+				}}
+			/>
 		</Layout>
 	);
 };

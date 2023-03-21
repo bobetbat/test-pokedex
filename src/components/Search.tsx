@@ -1,10 +1,11 @@
 import * as React from "react";
-import { alpha, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
-import { createSearchParams, useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
+import { IconButton } from "@mui/material";
 
 const SearchContainer = styled("div")(({ theme }) => ({
 	display: "flex",
@@ -12,12 +13,10 @@ const SearchContainer = styled("div")(({ theme }) => ({
 	justifyContent: "space-between",
 	paddingY: theme.spacing(1),
 	borderRadius: theme.shape.borderRadius,
-	backgroundColor: alpha(theme.palette.common.white, 0.15),
-	"&:hover": {
-		backgroundColor: alpha(theme.palette.common.white, 0.25),
-	},
+	backgroundColor: "#FCFCFC",
 	[theme.breakpoints.up("md")]: {
-		minWidth: "51rem",
+		padding: ".5rem",
+		minWidth: "50rem",
 	},
 }));
 
@@ -30,13 +29,14 @@ const IconWrapper = styled("div")(({ theme }) => ({
 	justifyContent: "center",
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
+const StyledInputBase = styled(InputBase)(() => ({
 	color: "inherit",
 	width: "80%",
 }));
 
 export const Search: React.FC = () => {
 	const navigate = useNavigate();
+	const [searchParams] = useSearchParams();
 
 	return (
 		<Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -47,6 +47,7 @@ export const Search: React.FC = () => {
 				<StyledInputBase
 					placeholder="Search…"
 					inputProps={{ "aria-label": "search" }}
+					value={searchParams.get("name") || ""}
 					onChange={(e) => {
 						navigate({
 							pathname: "/",
@@ -54,9 +55,13 @@ export const Search: React.FC = () => {
 						});
 					}}
 				/>
-				<IconWrapper>
+				<IconButton onClick={() => {
+					navigate({
+						pathname: "/",
+					});
+				}}>
 					<CloseIcon />
-				</IconWrapper>
+				</IconButton>
 			</SearchContainer>
 		</Box>
 	);
