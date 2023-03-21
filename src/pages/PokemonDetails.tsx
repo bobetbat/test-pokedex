@@ -42,8 +42,8 @@ export const PokemonDetails: React.FC = () => {
 						</TabList>
 					</Box>
 					<Card sx={{ p: 4 }}>
-						<TabPanel value="1" sx={{ display: "flex", flexDirection: "row", p: 0 }}>
-							<Card sx={{ mr: 1 }}>
+						<TabPanel value="1" sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, alignItems: "center", p: 0 }}>
+							<Card sx={{ width: 240 }}>
 								<Typography fontWeight={600} color='primary.main' variant='h5'>{formatString(pokemonDetails?.name)}</Typography>
 								<CardMedia
 									sx={{ height: 340, width: 240 }}
@@ -51,10 +51,10 @@ export const PokemonDetails: React.FC = () => {
 									title="green iguana"
 								/>
 							</Card>
-							<List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper", alignSelf: "center" }}>
+							<List sx={{ width: { xs: "100%", sm: "50%" }, bgcolor: "background.paper", alignSelf: "center", m: 2 }}>
 								<ListItem>
-									<Box sx={{ p: 1, borderRadius: ".25rem", width: "20%", bgcolor: "secondary.main" }}>
-										<Typography fontWeight={600} variant='body1'>
+									<Box sx={{ p: 1, borderRadius: ".25rem", width: "30%", bgcolor: "secondary.main" }}>
+										<Typography fontWeight={600} textAlign='center' variant='body1'>
 											Height
 										</Typography>
 									</Box>
@@ -65,8 +65,8 @@ export const PokemonDetails: React.FC = () => {
 									</Box>
 								</ListItem>
 								<ListItem>
-									<Box sx={{ p: 1, borderRadius: ".25rem", width: "20%", bgcolor: "secondary.main" }}>
-										<Typography fontWeight={600} variant='body1'>
+									<Box sx={{ p: 1, borderRadius: ".25rem", width: "30%", bgcolor: "secondary.main" }}>
+										<Typography fontWeight={600} textAlign='center' variant='body1'>
 											Weight
 										</Typography>
 									</Box>
@@ -77,7 +77,7 @@ export const PokemonDetails: React.FC = () => {
 									</Box>
 								</ListItem>
 								<ListItem>
-									<Box sx={{ p: 1, borderRadius: ".25rem", width: "20%", bgcolor: "secondary.main" }}>
+									<Box sx={{ p: 1, borderRadius: ".25rem", width: "30%", bgcolor: "secondary.main" }}>
 										<Typography fontWeight={600} textAlign='center' variant='body1'>
 											Type
 										</Typography>
@@ -90,8 +90,8 @@ export const PokemonDetails: React.FC = () => {
 								</ListItem>
 							</List>
 						</TabPanel>
-						<TabPanel value="2" sx={{ display: "flex", flexDirection: "row", p: 0 }}>
-							<Card sx={{ mr: 1 }}>
+						<TabPanel value="2" sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, alignItems: "center", p: 0 }}>
+							<Card sx={{ width: 240 }}>
 								<Typography fontWeight={600} color='primary.main' variant='h5'>{formatString(pokemonDetails?.name)}</Typography>
 								<CardMedia
 									sx={{ height: 340, width: 240 }}
@@ -99,7 +99,7 @@ export const PokemonDetails: React.FC = () => {
 									title="green iguana"
 								/>
 							</Card>
-							<List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper", alignSelf: "center" }}>
+							<List sx={{ width: { xs: "100%", sm: "50%" }, bgcolor: "background.paper", alignSelf: "center", m: 2 }}>
 								{pokemonDetails?.pokemon_v2_pokemonstats?.map((stat, i) => <ListItem key={i} sx={{ display: "flex", direction: "row", justifyContent: "space-between" }}>
 									<Typography fontWeight={600} variant='body1'>
 										{formatString(stat.pokemon_v2_stat?.name)}
