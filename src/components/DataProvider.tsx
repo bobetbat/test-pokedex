@@ -12,7 +12,7 @@ type Props = {
 export const DataProvider: React.FC<Props> = ({ children }) => {
 	const dispatch = useDispatch();
 
-	const { data, loading } = useFetch(getItems);
+	const { data } = useFetch(getItems);
 	useEffect(() => {
 		if (data === null) return;
 		// console.log("save data to store");

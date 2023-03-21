@@ -66,6 +66,7 @@ export interface Response {
 export const useFetch = (graphqlQuery: Query) => {
 	const [data, setData] = useState<Response | null>(null);
 	const [loading, setLoading] = useState(true);
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const [error, setError] = useState<any>(null);
 
 	useEffect(() => {
